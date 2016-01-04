@@ -123,6 +123,7 @@ module FakeS3
         response['Accept-Ranges'] = "bytes"
         response['Last-Ranges'] = "bytes"
         response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Headers']  = '*'
 
         real_obj.custom_metadata.each do |header, value|
           response.header['x-amz-meta-' + header] = value
@@ -170,6 +171,7 @@ module FakeS3
       response.body = ""
       response['Content-Type'] = "text/xml"
       response['Access-Control-Allow-Origin'] = '*'
+      response['Access-Control-Allow-Headers']  = '*'
 
       case s_req.type
       when Request::COPY
@@ -222,7 +224,7 @@ module FakeS3
       end
 
       response['Access-Control-Allow-Origin']   = '*'
-      response['Access-Control-Allow-Headers']  = 'Authorization, Content-Length'
+      response['Access-Control-Allow-Headers']  = '*'
       response['Access-Control-Expose-Headers'] = 'ETag'
 
       response.status = 200
@@ -295,7 +297,7 @@ module FakeS3
 
       response['Content-Type']                  = 'text/xml'
       response['Access-Control-Allow-Origin']   = '*'
-      response['Access-Control-Allow-Headers']  = 'Authorization, Content-Length'
+      response['Access-Control-Allow-Headers']  = '*'
       response['Access-Control-Expose-Headers'] = 'ETag'
     end
 
@@ -319,7 +321,7 @@ module FakeS3
 
       response['Access-Control-Allow-Origin']   = '*'
       response['Access-Control-Allow-Methods']  = 'PUT, POST, HEAD, GET, OPTIONS'
-      response['Access-Control-Allow-Headers']  = 'Accept, Content-Type, Authorization, Content-Length, ETag'
+      response['Access-Control-Allow-Headers']  = '*'
       response['Access-Control-Expose-Headers'] = 'ETag'
     end
 
